@@ -4,7 +4,7 @@ import Icone from '../components/Icone.astro';
 import { site, whatsappLink, telLink } from '../lib/dados';
 ---
 <Base titulo="Contato" descricao={`Fale com a inMetal: ${site.telefone}, WhatsApp ${site.whatsapp_exibicao}, ${site.email}. ${site.endereco}, ${site.cidade}.`}>
-  <section class="pagina-topo">
+  <section class="pagina-topo" style={site.contato_capa ? `--capa:url('${site.contato_capa}');--foco:${site.contato_capa_posicao ?? 'center'}` : undefined}>
     <div class="container">
       <p class="sobretitulo sobretitulo--claro">Fale com a gente</p>
       <h1>Contato</h1>

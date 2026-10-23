@@ -3,6 +3,8 @@ titulo: "Quem somos"
 menu: "Empresa"
 tipo: "institucional"
 ordem: 1
+capa: "/uploads/servicos/Empresa_laser.webp"
+capa_posicao: "center 45%"
 descricao: "A inMetal é a unidade de metalurgia da Indeletra, especializada em soluções metálicas em Brasília – DF."
 ---
 

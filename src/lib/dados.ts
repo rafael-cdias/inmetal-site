@@ -19,6 +19,8 @@ const SiteSchema = z.object({
   cidade: z.string(),
   horario: z.string(),
   contato_texto: z.string(),
+  contato_capa: z.string().optional(),
+  contato_capa_posicao: z.string().optional(),
   instagram: z.string().optional(),
   facebook: z.string().optional(),
   youtube: z.string().optional(),

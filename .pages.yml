@@ -185,6 +185,11 @@ content:
       - { name: cidade, label: Cidade / CEP, type: string }
       - { name: horario, label: Horário de atendimento, type: text }
       - { name: contato_texto, label: Texto da página Contato, type: text }
+      - { name: contato_capa, label: Foto do topo da página Contato, type: image }
+      - name: contato_capa_posicao
+        label: Enquadramento da foto do Contato (opcional)
+        description: "Ex.: center, top, bottom, 50% 70%."
+        type: string
       - { name: instagram, label: Instagram (link), type: string }
       - { name: facebook, label: Facebook (link), type: string }
       - { name: youtube, label: YouTube (link), type: string }
