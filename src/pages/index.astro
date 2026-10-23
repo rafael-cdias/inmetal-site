@@ -67,4 +67,23 @@ import { home, paragrafos, whatsappLink } from '../lib/dados';
       </div>
     </div>
   </section>
+
+  {home.catalogo && (
+    <section class="secao secao--escura" id="catalogo">
+      <div class="container catalogo-home">
+        <a class="catalogo-home__capa" href={home.catalogo.arquivo} target="_blank" rel="noopener" aria-label={home.catalogo.botao}>
+          <img src={home.catalogo.capa} alt={`Capa do ${home.catalogo.titulo}`} loading="lazy" width="455" height="644" />
+        </a>
+        <div>
+          <p class="sobretitulo sobretitulo--claro">Material para download</p>
+          <h2>{home.catalogo.titulo}</h2>
+          {paragrafos(home.catalogo.texto).map((p) => <p>{p}</p>)}
+          <div class="catalogo-home__botoes">
+            <a class="botao botao--primario" href={home.catalogo.arquivo} target="_blank" rel="noopener"><Icone nome="pdf" /> {home.catalogo.botao}</a>
+            <a class="botao botao--contorno-claro" href={whatsappLink('Olá! Vi o catálogo da inMetal e gostaria de um orçamento.')} target="_blank" rel="noopener"><Icone nome="whatsapp" /> Pedir orçamento</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
 </Base>

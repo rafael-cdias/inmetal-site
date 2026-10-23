@@ -50,6 +50,13 @@ const HomeSchema = z.object({
   servicos: z.array(Card),
   produtos_titulo: z.string(),
   produtos: z.array(Card),
+  catalogo: z.object({
+    titulo: z.string(),
+    texto: z.string(),
+    arquivo: z.string(),
+    capa: z.string(),
+    botao: z.string(),
+  }).strict().optional(),
 }).strict();
 
 export const site = SiteSchema.parse(siteJson);

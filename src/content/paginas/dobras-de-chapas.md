@@ -3,6 +3,8 @@ titulo: "Dobras de chapas"
 tipo: "servico"
 ordem: 2
 descricao: "Dobra de chapas metálicas em aço carbono, inox e alumínio, com precisão e repetibilidade."
+video: "/uploads/videos/Video_Dobradeira3.mp4"
+video_capa: "/uploads/videos/Video_Dobradeira3-poster.jpg"
 capa: "/uploads/servicos/IMG_0377.webp"
 galeria_titulo: "Algumas fotos do processo de dobras"
 galeria:

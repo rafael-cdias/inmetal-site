@@ -6,8 +6,16 @@
       "poster": "/uploads/videos/Video_Laser1-poster.jpg",
       "link": "/corte-de-chapas-a-laser/",
       "imagens": [
-        { "imagem": "/uploads/servicos/FiltroLinha_Corte.webp", "rotulo": "Peças personalizadas", "categoria": "Indústria" },
-        { "imagem": "/uploads/servicos/Fachada-painel-aluminio-_02.webp", "rotulo": "Painéis de Fachada", "categoria": "Arquitetura" }
+        {
+          "imagem": "/uploads/servicos/FiltroLinha_Corte.webp",
+          "rotulo": "Peças personalizadas",
+          "categoria": "Indústria"
+        },
+        {
+          "imagem": "/uploads/servicos/Fachada-painel-aluminio-_02.webp",
+          "rotulo": "Painéis de Fachada",
+          "categoria": "Arquitetura"
+        }
       ]
     },
     {
@@ -16,8 +24,16 @@
       "poster": "/uploads/videos/Video_Dobradeira3-poster.jpg",
       "link": "/dobras-de-chapas/",
       "imagens": [
-        { "imagem": "/uploads/servicos/IMG_0381.webp", "rotulo": "Peças personalizadas", "categoria": "Indústria" },
-        { "imagem": "/uploads/servicos/IMG_1364.webp", "rotulo": "Painéis de Fachada", "categoria": "Arquitetura" }
+        {
+          "imagem": "/uploads/servicos/IMG_0381.webp",
+          "rotulo": "Peças personalizadas",
+          "categoria": "Indústria"
+        },
+        {
+          "imagem": "/uploads/servicos/IMG_1364.webp",
+          "rotulo": "Painéis de Fachada",
+          "categoria": "Arquitetura"
+        }
       ]
     },
     {
@@ -26,8 +42,16 @@
       "poster": "/uploads/videos/Video_Pintura1-poster.jpg",
       "link": "/pintura-eletrostatica/",
       "imagens": [
-        { "imagem": "/uploads/servicos/IMG_20230613_120139.webp", "rotulo": "Peças personalizadas", "categoria": "Indústria" },
-        { "imagem": "/uploads/servicos/IMG_20240522_141042.webp", "rotulo": "Painéis de Fachada", "categoria": "Arquitetura" }
+        {
+          "imagem": "/uploads/servicos/IMG_20230613_120139.webp",
+          "rotulo": "Peças personalizadas",
+          "categoria": "Indústria"
+        },
+        {
+          "imagem": "/uploads/servicos/IMG_20240522_141042.webp",
+          "rotulo": "Painéis de Fachada",
+          "categoria": "Arquitetura"
+        }
       ]
     }
   ],
@@ -35,17 +59,69 @@
   "intro_texto": "Na InMetal você encontra o produto ou serviço em aço ideal para o seu negócio.\n\nDentro da gama de produtos estão, cases/caixas, quadros elétricos, suportes para motores de portões, acessórios para áudio e informática, além dos serviços de corte a laser e dobras de chapas metálicas, pintura eletrostática e serralheria.",
   "servicos_titulo": "Serviços",
   "servicos": [
-    { "titulo": "Corte a laser", "imagem": "/uploads/servicos/IMG_20231202_182103.webp", "link": "/corte-de-chapas-a-laser/", "texto": "Realizamos cortes a laser em chapas metálicas com tecnologia de ponta, garantindo máxima precisão e excelente acabamento. Nosso serviço é ideal para atender projetos personalizados e de alta complexidade, proporcionando cortes rápidos, sem rebarbas e com mínima perda de material. Atendemos diversos setores industriais, oferecendo soluções que aliam eficiência, qualidade e agilidade. Com equipamentos modernos e uma equipe qualificada, entregamos resultados que superam expectativas, seja para produções em pequena ou grande escala." },
-    { "titulo": "Dobras de chapas", "imagem": "/uploads/servicos/IMG_0377.webp", "link": "/dobras-de-chapas/", "texto": "Oferecemos serviços especializados de dobra de chapas metálicas com alta precisão e qualidade, atendendo às necessidades de diversos segmentos industriais. Utilizamos máquinas modernas e técnicas avançadas para garantir acabamentos perfeitos, atendendo desde projetos simples até demandas complexas. Nossa equipe é treinada para realizar dobras sob medida, respeitando rigorosamente as especificações técnicas e prazos estabelecidos. Seja para pequenas ou grandes produções, entregamos soluções que combinam eficiência e durabilidade." },
-    { "titulo": "Pintura eletrostática", "imagem": "/uploads/servicos/IMG_0405.webp", "link": "/pintura-eletrostatica/", "texto": "Oferecemos serviços de pintura eletrostática em chapas e peças metálicas, garantindo acabamento uniforme, durabilidade e resistência superior. Utilizamos equipamentos modernos e tintas de alta qualidade para atender diversas aplicações industriais, comerciais e decorativas. Nossa técnica permite excelente aderência e proteção contra corrosão, desgaste e impactos, valorizando a estética e a funcionalidade das peças. Com agilidade e precisão, entregamos resultados que atendem aos mais altos padrões de qualidade." },
-    { "titulo": "Serralheria", "imagem": "/uploads/servicos/IMG_20230612_165223.webp", "link": "/serralheria/", "texto": "Oferecemos serviços de serralheria sob medida, unindo qualidade, funcionalidade e design. Fabricamos estruturas e peças metálicas personalizadas para atender às necessidades de projetos residenciais, comerciais e industriais. Nossa equipe especializada utiliza materiais de alta durabilidade e técnicas precisas para garantir acabamentos impecáveis e segurança em cada detalhe. Com criatividade e eficiência, transformamos suas ideias em soluções práticas e elegantes." }
+    {
+      "titulo": "Corte a laser",
+      "imagem": "/uploads/servicos/IMG_20231202_182103.webp",
+      "link": "/corte-de-chapas-a-laser/",
+      "texto": "Realizamos cortes a laser em chapas metálicas com tecnologia de ponta, garantindo máxima precisão e excelente acabamento. Nosso serviço é ideal para atender projetos personalizados e de alta complexidade, proporcionando cortes rápidos, sem rebarbas e com mínima perda de material. Atendemos diversos setores industriais, oferecendo soluções que aliam eficiência, qualidade e agilidade. Com equipamentos modernos e uma equipe qualificada, entregamos resultados que superam expectativas, seja para produções em pequena ou grande escala."
+    },
+    {
+      "titulo": "Dobras de chapas",
+      "imagem": "/uploads/servicos/IMG_0377.webp",
+      "link": "/dobras-de-chapas/",
+      "texto": "Oferecemos serviços especializados de dobra de chapas metálicas com alta precisão e qualidade, atendendo às necessidades de diversos segmentos industriais. Utilizamos máquinas modernas e técnicas avançadas para garantir acabamentos perfeitos, atendendo desde projetos simples até demandas complexas. Nossa equipe é treinada para realizar dobras sob medida, respeitando rigorosamente as especificações técnicas e prazos estabelecidos. Seja para pequenas ou grandes produções, entregamos soluções que combinam eficiência e durabilidade."
+    },
+    {
+      "titulo": "Pintura eletrostática",
+      "imagem": "/uploads/servicos/IMG_0405.webp",
+      "link": "/pintura-eletrostatica/",
+      "texto": "Oferecemos serviços de pintura eletrostática em chapas e peças metálicas, garantindo acabamento uniforme, durabilidade e resistência superior. Utilizamos equipamentos modernos e tintas de alta qualidade para atender diversas aplicações industriais, comerciais e decorativas. Nossa técnica permite excelente aderência e proteção contra corrosão, desgaste e impactos, valorizando a estética e a funcionalidade das peças. Com agilidade e precisão, entregamos resultados que atendem aos mais altos padrões de qualidade."
+    },
+    {
+      "titulo": "Serralheria",
+      "imagem": "/uploads/servicos/IMG_20230612_165223.webp",
+      "link": "/serralheria/",
+      "texto": "Oferecemos serviços de serralheria sob medida, unindo qualidade, funcionalidade e design. Fabricamos estruturas e peças metálicas personalizadas para atender às necessidades de projetos residenciais, comerciais e industriais. Nossa equipe especializada utiliza materiais de alta durabilidade e técnicas precisas para garantir acabamentos impecáveis e segurança em cada detalhe. Com criatividade e eficiência, transformamos suas ideias em soluções práticas e elegantes."
+    }
   ],
   "produtos_titulo": "Produtos",
   "produtos": [
-    { "titulo": "Caixas/cases", "imagem": "/uploads/produtos/CaixasMetal_01.webp", "link": "/contato/", "texto": "Desenvolvemos caixas metálicas e cases personalizados, projetados para atender às suas necessidades específicas com máxima qualidade e funcionalidade. Trabalhamos com diferentes dimensões, acabamentos e detalhes, garantindo soluções sob medida para proteção, transporte ou armazenamento de equipamentos e materiais. Utilizamos materiais de alta resistência e técnicas avançadas para fabricar produtos duráveis, estéticos e práticos. Ideal para projetos industriais, comerciais ou pessoais, nossa customização alia criatividade e precisão para transformar suas ideias em realidade." },
-    { "titulo": "Gabinetes para Servidores", "imagem": "/uploads/servicos/Gabinete2U_ver25_24.webp", "link": "/gabinete-para-servidores/", "texto": "Produzimos gabinetes metálicos para computadores e servidores, desenvolvidos para oferecer proteção, durabilidade e eficiência térmica. Nossos gabinetes são projetados com layouts personalizados, atendendo às necessidades específicas de cada cliente, seja para ambientes corporativos ou data centers. Fabricados com materiais de alta qualidade e acabamento refinado, garantimos segurança, organização e fácil acesso aos componentes internos. Com designs funcionais e robustos, nossas soluções asseguram o desempenho ideal dos seus equipamentos." },
-    { "titulo": "Acessórios para Racks 19\"", "imagem": "/uploads/servicos/IMG_8372.webp", "link": "/acessorios-para-racks-19/", "texto": "Fabricamos acessórios para racks de informática 19” com alta qualidade e precisão, atendendo às necessidades de organização e proteção de equipamentos. Nossos produtos incluem bandejas, suportes, organizadores de cabos e outros itens personalizados para otimizar o espaço e garantir a funcionalidade dos sistemas. Utilizamos metais resistentes e acabamentos de excelência para oferecer durabilidade e segurança. Ideal para ambientes corporativos, data centers e outros espaços que demandam soluções práticas e eficientes." },
-    { "titulo": "Acessórios para Áudio", "imagem": "/uploads/servicos/Medusa_8canais_08.webp", "link": "/acessorios-para-audio/", "texto": "Fabricamos acessórios metálicos para áudio profissional, como medusas, espelhos XLR e painéis XLR, com alta qualidade e precisão. Nossos produtos são projetados para atender às exigências de estúdios, eventos e instalações de áudio, garantindo organização, durabilidade e excelente desempenho técnico. Oferecemos opções personalizadas, adaptadas às suas necessidades, com acabamentos refinados e materiais resistentes. Seja para uso em projetos pequenos ou grandes, nossas soluções são ideais para elevar a qualidade e a funcionalidade do seu sistema de áudio." },
-    { "titulo": "Suportes para Motores de portões", "imagem": "/uploads/servicos/Suporte-Motores-de-Portao-_09.webp", "link": "/suporte-para-motores/", "texto": "Produzimos suportes de aço robustos para instalações de motores elétricos para portões automáticos, projetados para garantir máxima segurança e durabilidade. Oferecemos modelos aéreos e de chão, todos com design reforçado e proteção contra vandalismo, proporcionando maior proteção ao equipamento. Fabricados com materiais de alta resistência e acabamentos anticorrosivos, nossos suportes atendem às mais exigentes demandas de instalação e funcionamento. São soluções confiáveis e personalizáveis para aplicações residenciais, comerciais e industriais." }
-  ]
+    {
+      "titulo": "Caixas/cases",
+      "imagem": "/uploads/produtos/CaixasMetal_02.webp",
+      "link": "/caixas-e-cases/",
+      "texto": "Desenvolvemos caixas metálicas e cases personalizados, projetados para atender às suas necessidades específicas com máxima qualidade e funcionalidade. Trabalhamos com diferentes dimensões, acabamentos e detalhes, garantindo soluções sob medida para proteção, transporte ou armazenamento de equipamentos e materiais. Utilizamos materiais de alta resistência e técnicas avançadas para fabricar produtos duráveis, estéticos e práticos. Ideal para projetos industriais, comerciais ou pessoais, nossa customização alia criatividade e precisão para transformar suas ideias em realidade."
+    },
+    {
+      "titulo": "Gabinetes para Servidores",
+      "imagem": "/uploads/servicos/Gabinete2U_ver25_24.webp",
+      "link": "/gabinete-para-servidores/",
+      "texto": "Produzimos gabinetes metálicos para computadores e servidores, desenvolvidos para oferecer proteção, durabilidade e eficiência térmica. Nossos gabinetes são projetados com layouts personalizados, atendendo às necessidades específicas de cada cliente, seja para ambientes corporativos ou data centers. Fabricados com materiais de alta qualidade e acabamento refinado, garantimos segurança, organização e fácil acesso aos componentes internos. Com designs funcionais e robustos, nossas soluções asseguram o desempenho ideal dos seus equipamentos."
+    },
+    {
+      "titulo": "Acessórios para Racks 19\"",
+      "imagem": "/uploads/servicos/IMG_8372.webp",
+      "link": "/acessorios-para-racks-19/",
+      "texto": "Fabricamos acessórios para racks de informática 19” com alta qualidade e precisão, atendendo às necessidades de organização e proteção de equipamentos. Nossos produtos incluem bandejas, suportes, organizadores de cabos e outros itens personalizados para otimizar o espaço e garantir a funcionalidade dos sistemas. Utilizamos metais resistentes e acabamentos de excelência para oferecer durabilidade e segurança. Ideal para ambientes corporativos, data centers e outros espaços que demandam soluções práticas e eficientes."
+    },
+    {
+      "titulo": "Acessórios para Áudio",
+      "imagem": "/uploads/servicos/Medusa_8canais_08.webp",
+      "link": "/acessorios-para-audio/",
+      "texto": "Fabricamos acessórios metálicos para áudio profissional, como medusas, espelhos XLR e painéis XLR, com alta qualidade e precisão. Nossos produtos são projetados para atender às exigências de estúdios, eventos e instalações de áudio, garantindo organização, durabilidade e excelente desempenho técnico. Oferecemos opções personalizadas, adaptadas às suas necessidades, com acabamentos refinados e materiais resistentes. Seja para uso em projetos pequenos ou grandes, nossas soluções são ideais para elevar a qualidade e a funcionalidade do seu sistema de áudio."
+    },
+    {
+      "titulo": "Suportes para Motores de portões",
+      "imagem": "/uploads/servicos/Suporte-Motores-de-Portao-_09.webp",
+      "link": "/suporte-para-motores/",
+      "texto": "Produzimos suportes de aço robustos para instalações de motores elétricos para portões automáticos, projetados para garantir máxima segurança e durabilidade. Oferecemos modelos aéreos e de chão, todos com design reforçado e proteção contra vandalismo, proporcionando maior proteção ao equipamento. Fabricados com materiais de alta resistência e acabamentos anticorrosivos, nossos suportes atendem às mais exigentes demandas de instalação e funcionamento. São soluções confiáveis e personalizáveis para aplicações residenciais, comerciais e industriais."
+    }
+  ],
+  "catalogo": {
+    "titulo": "Catálogo de produtos inMetal",
+    "texto": "Gabinetes para servidores, cases em aço e alumínio, acessórios para racks 19\", acessórios para áudio, medusas para som, suportes para motores de portão, quadros de comando, totens e produtos diversos — além dos nossos serviços de corte a laser, dobra e pintura eletrostática. Tudo reunido em um só material, com fotos e a descrição de cada linha.\n\nBaixe o catálogo em PDF, escolha o que precisa e fale com a gente para um orçamento. E se o que você procura não estiver lá, fabricamos sob encomenda a partir do seu projeto.",
+    "arquivo": "/Files/Catalogo-Produtos-inMetal.pdf",
+    "capa": "/uploads/catalogo/catalogo-capa.webp",
+    "botao": "Baixar catálogo (PDF)"
+  }
 }

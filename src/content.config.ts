@@ -22,6 +22,8 @@ const paginas = defineCollection({
     ordem: z.number().default(99),
     descricao: z.string(),
     capa: z.string().optional(),
+    video: z.string().optional(),
+    video_capa: z.string().optional(),
     video_youtube: z.string().optional(),
     catalogo: z.object({
       titulo: z.string(),

@@ -4,8 +4,9 @@ menu: "Corte de Chapas a Laser"
 tipo: "servico"
 ordem: 1
 descricao: "Corte a laser de chapas metálicas com precisão, acabamento sem rebarbas e baixa perda de material."
+video: "/uploads/videos/Video_Laser1.mp4"
+video_capa: "/uploads/videos/Video_Laser1-poster.jpg"
 capa: "/uploads/servicos/IMG_20231202_182103.webp"
-video_youtube: "https://www.youtube.com/watch?v=XHOmBV4js_E"
 catalogo:
   titulo: "Catálogo de painéis"
   texto: "Aqui nós temos um catálogo com várias opções de painéis decorativos. Seja para portões, portas, divisórias, fachadas, esses designs irão te ajudar a escolher o que mais lhe agrada.\n\nBaixe o catálogo, escolha um modelo e entre em contato para que possamos calcular e orçar um serviço de qualidade pra você!"

@@ -3,6 +3,8 @@ titulo: "Pintura eletrostática"
 tipo: "servico"
 ordem: 4
 descricao: "Pintura eletrostática a pó em peças metálicas: acabamento uniforme, resistência à corrosão e cura em forno."
+video: "/uploads/videos/Video_Pintura1.mp4"
+video_capa: "/uploads/videos/Video_Pintura1-poster.jpg"
 capa: "/uploads/servicos/IMG_0405.webp"
 paleta:
   titulo: "Nossa paleta de cores"

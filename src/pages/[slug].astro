@@ -26,7 +26,12 @@ const msg = `Olá! Vim pelo site da inMetal e gostaria de um orçamento de: ${d.
 
   <div class="container pagina-corpo" class:list={{ 'pagina-corpo--institucional': d.tipo === 'institucional' }}>
     <article class="prosa">
-      {ytId && (
+      {d.video && (
+        <div class="video-proprio">
+          <video src={d.video} poster={d.video_capa} autoplay muted loop playsinline controls preload="metadata" aria-label={`Vídeo: ${d.titulo}`}></video>
+        </div>
+      )}
+      {!d.video && ytId && (
         <div class="video-yt">
           <iframe src={`https://www.youtube-nocookie.com/embed/${ytId}`} title={`Vídeo: ${d.titulo}`} loading="lazy"
             allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

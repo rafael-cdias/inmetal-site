@@ -50,6 +50,13 @@ content:
       - name: capa
         label: Imagem de fundo do topo da página
         type: image
+      - name: video
+        label: Vídeo próprio (MP4 leve, até ~5 MB)
+        description: Aparece no topo do texto, em loop e sem som.
+        type: file
+      - name: video_capa
+        label: Imagem enquanto o vídeo carrega
+        type: image
       - name: video_youtube
         label: Vídeo do YouTube (link)
         description: Opcional. Cole o link do vídeo, ex. https://www.youtube.com/watch?v=...
@@ -131,6 +138,15 @@ content:
           - { name: imagem, label: Foto, type: image }
           - { name: link, label: Link, type: string }
           - { name: texto, label: Texto, type: text }
+      - name: catalogo
+        label: Catálogo para download
+        type: object
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+          - { name: arquivo, label: Arquivo PDF (até 25 MB), type: file }
+          - { name: capa, label: Imagem da capa, type: image }
+          - { name: botao, label: Texto do botão, type: string }
 
   - name: site
     label: Contato e dados gerais

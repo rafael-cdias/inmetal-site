@@ -369,3 +369,21 @@ p { margin: 0 0 1em; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+/* Vídeo próprio nas páginas de serviço */
+.video-proprio { margin-bottom: 2rem; border-radius: var(--raio); overflow: hidden; background: #000; aspect-ratio: 16 / 9; }
+.video-proprio video { width: 100%; height: 100%; object-fit: cover; }
+
+/* Catálogo na home */
+.secao--escura { background: var(--aco-900); color: #c9d2da; }
+.secao--escura h2 { color: #fff; }
+.catalogo-home { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.catalogo-home__capa { display: block; transform: rotate(-3deg); transition: transform .3s; box-shadow: 0 20px 50px rgb(0 0 0 / .45); border-radius: var(--raio); overflow: hidden; }
+.catalogo-home__capa:hover { transform: rotate(0) scale(1.02); }
+.catalogo-home__capa img { width: 100%; height: auto; }
+.catalogo-home p { font-size: 1.08rem; }
+.catalogo-home__botoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+@media (max-width: 760px) {
+  .catalogo-home { grid-template-columns: 1fr; }
+  .catalogo-home__capa { max-width: 240px; margin-inline: auto; }
+}
