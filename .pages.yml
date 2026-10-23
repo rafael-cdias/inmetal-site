@@ -48,7 +48,8 @@ content:
         type: text
         required: true
       - name: capa
-        label: Imagem de fundo do topo da página
+        label: Foto do topo da página
+        description: Aparece inteira ao lado do título, no formato original (sem corte).
         type: image
       - name: video
         label: Vídeo próprio (MP4 leve, até ~5 MB)
@@ -68,6 +69,7 @@ content:
           - { name: titulo, label: Título, type: string }
           - { name: texto, label: Texto, type: text }
           - { name: arquivo, label: Arquivo PDF, type: file }
+          - { name: capa, label: Imagem da capa (opcional), type: image }
           - { name: botao, label: Texto do botão, type: string, default: Baixe aqui }
       - name: paleta
         label: Paleta de cores (opcional)

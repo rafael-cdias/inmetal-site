@@ -29,6 +29,7 @@ const paginas = defineCollection({
       titulo: z.string(),
       texto: z.string(),
       arquivo: z.string(),
+      capa: z.string().optional(),
       botao: z.string().default('Baixe aqui'),
     }).strict().optional(),
     paleta: z.object({

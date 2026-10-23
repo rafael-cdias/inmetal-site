@@ -11,7 +11,8 @@ catalogo:
   titulo: "Catálogo de painéis"
   texto: "Aqui nós temos um catálogo com várias opções de painéis decorativos. Seja para portões, portas, divisórias, fachadas, esses designs irão te ajudar a escolher o que mais lhe agrada.\n\nBaixe o catálogo, escolha um modelo e entre em contato para que possamos calcular e orçar um serviço de qualidade pra você!"
   arquivo: "/Files/MODELO_2000_PAINEIS-compressed.pdf"
-  botao: "Baixe aqui"
+  capa: "/uploads/catalogo/paineis-capa.webp"
+  botao: "Baixar catálogo de painéis (PDF)"
 galeria_titulo: "Algumas fotos do processo de corte"
 galeria:
   - imagem: "/uploads/servicos/IMG_20231202_150557.webp"
