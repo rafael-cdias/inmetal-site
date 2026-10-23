@@ -246,13 +246,17 @@ p { margin: 0 0 1em; }
 }
 .pagina-topo::before {
   content: ''; position: absolute; inset: 0; z-index: -2;
-  background-image: var(--capa, none); background-size: cover; background-position: center; opacity: .35;
+  background-image: var(--capa, none); background-size: cover; background-position: center;
 }
 .pagina-topo::after {
   content: ''; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(90deg, rgb(15 24 33 / .95) 0%, rgb(15 24 33 / .7) 55%, rgb(15 24 33 / .4) 100%);
+  background: linear-gradient(90deg, rgb(15 24 33 / .82) 0%, rgb(15 24 33 / .55) 40%, rgb(15 24 33 / .12) 75%, rgb(15 24 33 / 0) 100%);
 }
-.pagina-topo h1 { color: #fff; margin: 0; max-width: 20ch; }
+.pagina-topo h1 { color: #fff; margin: 0; max-width: 20ch; text-shadow: 0 2px 12px rgb(0 0 0 / .45); }
+.pagina-topo .sobretitulo { text-shadow: 0 1px 6px rgb(0 0 0 / .5); }
+@media (max-width: 760px) {
+  .pagina-topo::after { background: linear-gradient(90deg, rgb(15 24 33 / .8) 0%, rgb(15 24 33 / .5) 70%, rgb(15 24 33 / .3) 100%); }
+}
 
 .pagina-corpo { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: clamp(32px, 5vw, 64px); padding: clamp(40px, 6vw, 72px) 0 clamp(24px, 4vw, 48px); }
 .pagina-corpo--institucional { grid-template-columns: minmax(0, 820px); }
