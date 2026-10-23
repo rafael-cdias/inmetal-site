@@ -8,8 +8,9 @@ const bloco = (nome) => {
   const j = yml.indexOf('\n  - name: ', i + 5);
   return yml.slice(i, j === -1 ? undefined : j);
 };
-const camposYml = (txt) => new Set([...txt.matchAll(/name: (\w+)/g)].map((m) => m[1]));
-const camposZod = (txt) => new Set([...txt.matchAll(/^\s*(\w+): z\./gm)].map((m) => m[1]));
+// ignora opções de seletores ({ name: x, label: y } sem 'type')
+const camposYml = (txt) => new Set([...txt.replace(/\{ name: \w+, label: [^}]*\}/g, (m) => (m.includes('type:') ? m : '')).matchAll(/name: (\w+)/g)].map((m) => m[1]));
+const camposZod = (txt) => new Set([...txt.matchAll(/^\s*(\w+): (?:z\.|opcional\()/gm)].map((m) => m[1]));
 
 const cfg = readFileSync('src/content.config.ts', 'utf8');
 const dados = readFileSync('src/lib/dados.ts', 'utf8');

@@ -8,39 +8,46 @@ import { glob } from 'astro/loaders';
  * Ao adicionar campo no .pages.yml, adicione aqui no MESMO commit.
  */
 
+/* O Pages CMS grava campos opcionais deixados em branco como "" (ou null), e objetos
+ * opcionais como { titulo: "", ... }. Tratamos isso como "não preenchido". */
+const vazio = (v: unknown): boolean =>
+  v === '' || v === null || v === undefined ||
+  (typeof v === 'object' && !Array.isArray(v) && Object.values(v as object).every(vazio));
+const opcional = <T extends z.ZodTypeAny>(t: T) => z.preprocess((v) => (vazio(v) ? undefined : v), t.optional());
+
 const imagemGaleria = z.object({
   imagem: z.string(),
-  legenda: z.string().optional(),
+  legenda: opcional(z.string()),
 }).strict();
 
 const paginas = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/paginas' }),
   schema: z.object({
     titulo: z.string(),
-    menu: z.string().optional(),
+    menu: opcional(z.string()),
     tipo: z.enum(['produto', 'servico', 'institucional']),
-    ordem: z.number().default(99),
+    ordem: z.preprocess((v) => (vazio(v) ? undefined : v), z.number().default(99)),
     descricao: z.string(),
-    capa: z.string().optional(),
-    capa_posicao: z.string().optional(),
-    capa_ajuste: z.enum(['preencher', 'inteira']).optional(),
-    video: z.string().optional(),
-    video_capa: z.string().optional(),
-    video_youtube: z.string().optional(),
-    catalogo: z.object({
+    capa: opcional(z.string()),
+    capa_posicao: opcional(z.string()),
+    capa_ajuste: opcional(z.enum(['preencher', 'inteira'])),
+    video: opcional(z.string()),
+    video_capa: opcional(z.string()),
+    video_youtube: opcional(z.string()),
+    catalogo: opcional(z.object({
       titulo: z.string(),
       texto: z.string(),
       arquivo: z.string(),
-      capa: z.string().optional(),
-      botao: z.string().default('Baixe aqui'),
-    }).strict().optional(),
-    paleta: z.object({
+      capa: opcional(z.string()),
+      botao: z.preprocess((v) => (vazio(v) ? undefined : v), z.string().default('Baixe aqui')),
+    }).strict()),
+    paleta: opcional(z.object({
       titulo: z.string(),
       texto: z.string(),
       imagem: z.string(),
-    }).strict().optional(),
-    galeria_titulo: z.string().optional(),
-    galeria: z.array(imagemGaleria).default([]),
+    }).strict()),
+    galeria_titulo: opcional(z.string()),
+    galeria: z.preprocess((v) => (v == null ? [] : v), z.array(imagemGaleria)),
   }).strict(),
 });
 

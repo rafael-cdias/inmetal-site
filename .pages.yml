@@ -6,6 +6,7 @@
 media:
   input: public/uploads
   output: /uploads
+  rename: safe
 
 content:
   - name: paginas
@@ -13,9 +14,13 @@ content:
     type: collection
     path: src/content/paginas
     format: yaml-frontmatter
+    filename:
+      template: "{fields.titulo}.md"
+      field: create
     view:
       fields: [titulo, tipo, ordem]
       primary: titulo
+      search: [titulo, menu]
       sort: [tipo, ordem]
       default:
         sort: ordem
@@ -35,9 +40,9 @@ content:
         required: true
         options:
           values:
-            - { value: produto, label: Produtos }
-            - { value: servico, label: Serviços }
-            - { value: institucional, label: Institucional (fora dos menus) }
+            - { name: produto, label: Produtos }
+            - { name: servico, label: Serviços }
+            - { name: institucional, label: Institucional (fora dos menus) }
       - name: ordem
         label: Ordem no menu
         type: number
@@ -61,8 +66,8 @@ content:
         type: select
         options:
           values:
-            - { value: preencher, label: Preencher }
-            - { value: inteira, label: Inteira (fundo branco) }
+            - { name: preencher, label: Preencher }
+            - { name: inteira, label: Inteira (fundo branco) }
       - name: video
         label: Vídeo próprio (MP4 leve, até ~5 MB)
         description: Aparece no topo do texto, em loop e sem som.
@@ -97,7 +102,10 @@ content:
         label: Galeria de fotos
         description: Arraste para mudar a ordem. Clicando na foto, o site abre em tela cheia com setas.
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "Foto {index}: {imagem}"
         fields:
           - { name: imagem, label: Foto, type: image }
           - { name: legenda, label: Legenda (opcional), type: string }
@@ -116,7 +124,10 @@ content:
       - name: destaques
         label: Destaques do topo (vídeos)
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {titulo}"
         fields:
           - { name: titulo, label: Título, type: string }
           - { name: video, label: Vídeo de fundo (MP4 leve, até ~5 MB), type: file }
@@ -125,7 +136,10 @@ content:
           - name: imagens
             label: Fotos pequenas
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{rotulo} · {categoria}"
             fields:
               - { name: imagem, label: Foto, type: image }
               - { name: rotulo, label: Rótulo, type: string }
@@ -136,7 +150,10 @@ content:
       - name: servicos
         label: Cartões de serviços
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {titulo}"
         fields:
           - { name: titulo, label: Título, type: string }
           - { name: imagem, label: Foto, type: image }
@@ -146,7 +163,10 @@ content:
       - name: produtos
         label: Cartões de produtos
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {titulo}"
         fields:
           - { name: titulo, label: Título, type: string }
           - { name: imagem, label: Foto, type: image }

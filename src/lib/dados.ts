@@ -2,6 +2,11 @@ import { z } from 'astro/zod';
 import siteJson from '../data/site.json';
 import homeJson from '../data/home.json';
 
+const vazio = (v: unknown): boolean =>
+  v === '' || v === null || v === undefined ||
+  (typeof v === 'object' && !Array.isArray(v) && Object.values(v as object).every(vazio));
+const opcional = <T extends z.ZodTypeAny>(t: T) => z.preprocess((v) => (vazio(v) ? undefined : v), t.optional());
+
 /* Mesma regra do content.config.ts: .strict() para não perder campos em silêncio. */
 
 const SiteSchema = z.object({
@@ -19,11 +24,11 @@ const SiteSchema = z.object({
   cidade: z.string(),
   horario: z.string(),
   contato_texto: z.string(),
-  contato_capa: z.string().optional(),
-  contato_capa_posicao: z.string().optional(),
-  instagram: z.string().optional(),
-  facebook: z.string().optional(),
-  youtube: z.string().optional(),
+  contato_capa: opcional(z.string()),
+  contato_capa_posicao: opcional(z.string()),
+  instagram: opcional(z.string()),
+  facebook: opcional(z.string()),
+  youtube: opcional(z.string()),
   mapa_embed: z.string(),
 }).strict();
 
@@ -37,8 +42,8 @@ const Card = z.object({
 const HomeSchema = z.object({
   destaques: z.array(z.object({
     titulo: z.string(),
-    video: z.string().optional(),
-    poster: z.string().optional(),
+    video: opcional(z.string()),
+    poster: opcional(z.string()),
     link: z.string(),
     imagens: z.array(z.object({
       imagem: z.string(),
@@ -52,13 +57,13 @@ const HomeSchema = z.object({
   servicos: z.array(Card),
   produtos_titulo: z.string(),
   produtos: z.array(Card),
-  catalogo: z.object({
+  catalogo: opcional(z.object({
     titulo: z.string(),
     texto: z.string(),
     arquivo: z.string(),
     capa: z.string(),
     botao: z.string(),
-  }).strict().optional(),
+  }).strict()),
 }).strict();
 
 export const site = SiteSchema.parse(siteJson);
