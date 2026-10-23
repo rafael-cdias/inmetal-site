@@ -4,6 +4,7 @@ tipo: "produto"
 ordem: 2
 descricao: "Quadros de comando em aço com pintura eletrostática RAL 7035 e grau de proteção IP54."
 capa: "/uploads/produtos/QuadroComando_01.webp"
+capa_ajuste: "inteira"
 galeria:
   - imagem: "/uploads/produtos/QuadroComando_01.webp"
   - imagem: "/uploads/produtos/QuadroComando_02.webp"

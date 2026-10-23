@@ -3,7 +3,8 @@ titulo: "Projetos"
 tipo: "servico"
 ordem: 5
 descricao: "Desenvolvimento de projetos metálicos personalizados: análise, desenho técnico, fabricação e instalação."
-capa: "/uploads/servicos/IMG_20230612_165223.webp"
+capa: "/uploads/servicos/Projetos_01.webp"
+capa_posicao: "50% 60%"
 ---
 
 Nossa empresa é especializada no desenvolvimento de projetos metálicos personalizados, oferecendo soluções completas para atender às mais diversas demandas de setores residenciais, comerciais e industriais. Trabalhamos com foco em qualidade, inovação e funcionalidade, desenvolvendo desde pequenos componentes até grandes estruturas metálicas, sempre alinhados às necessidades específicas de cada cliente.

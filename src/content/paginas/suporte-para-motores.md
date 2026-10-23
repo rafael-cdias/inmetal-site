@@ -5,6 +5,7 @@ tipo: "produto"
 ordem: 6
 descricao: "Suportes aéreos e de chão para motores de portão eletrônico, com tampa de proteção contra furto opcional."
 capa: "/uploads/produtos/SuporteMotor_01.webp"
+capa_ajuste: "inteira"
 galeria:
   - imagem: "/uploads/produtos/SuporteMotor_01.webp"
   - imagem: "/uploads/produtos/SuporteMotor_02.webp"

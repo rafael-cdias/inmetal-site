@@ -4,7 +4,6 @@ import Base from '../layouts/Base.astro';
 import Galeria from '../components/Galeria.astro';
 import Icone from '../components/Icone.astro';
 import { paragrafos, whatsappLink, telLink, site } from '../lib/dados';
-import sharp from 'sharp';
 
 export async function getStaticPaths() {
   const paginas = await getCollection('paginas');
@@ -15,28 +14,13 @@ const d = pagina.data;
 const { Content } = await render(pagina);
 const secao = { produto: 'Produtos', servico: 'Serviços', institucional: 'Empresa' }[d.tipo];
 const ytId = d.video_youtube?.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/)?.[1];
-// Mede a foto do topo para exibi-la inteira, no formato original (sem corte).
-let capaProporcao = 4 / 3;
-if (d.capa) {
-  try {
-    const { width, height } = await sharp(`public${d.capa}`).metadata();
-    if (width && height) capaProporcao = Math.min(2.4, Math.max(0.7, width / height));
-  } catch { /* imagem externa ou ausente: usa 4:3 */ }
-}
 const msg = `Olá! Vim pelo site da inMetal e gostaria de um orçamento de: ${d.menu ?? d.titulo}.`;
 ---
 <Base titulo={d.menu ?? d.titulo} descricao={d.descricao} imagem={d.capa}>
-  <section class:list={['pagina-topo', { 'pagina-topo--com-foto': d.capa }]} style={d.capa ? `--capa:url('${d.capa}')` : undefined}>
-    <div class="container pagina-topo__grade">
-      <div class="pagina-topo__texto">
-        <p class="sobretitulo sobretitulo--claro">{secao}</p>
-        <h1>{d.titulo}</h1>
-      </div>
-      {d.capa && (
-        <figure class="pagina-topo__foto" style={`--proporcao:${capaProporcao.toFixed(3)}`}>
-          <img src={d.capa} alt={d.titulo} />
-        </figure>
-      )}
+  <section class:list={['pagina-topo', { 'pagina-topo--inteira': d.capa_ajuste === 'inteira' }]} style={d.capa ? `--capa:url('${d.capa}');--foco:${d.capa_posicao ?? 'center'}` : undefined}>
+    <div class="container">
+      <p class="sobretitulo sobretitulo--claro">{secao}</p>
+      <h1>{d.titulo}</h1>
     </div>
   </section>
 

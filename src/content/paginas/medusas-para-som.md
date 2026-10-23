@@ -5,6 +5,7 @@ tipo: "produto"
 ordem: 4
 descricao: "Chassis de medusas para áudio profissional de 6 a 56 vias, com alça, prensa-cabo e parafusos."
 capa: "/uploads/produtos/Medusas_01.webp"
+capa_ajuste: "inteira"
 galeria:
   - imagem: "/uploads/produtos/Medusas_01.webp"
   - imagem: "/uploads/produtos/Medusas_02.webp"

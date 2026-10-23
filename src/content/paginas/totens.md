@@ -4,6 +4,7 @@ tipo: "produto"
 ordem: 7
 descricao: "Totens metálicos para mídia publicitária e painéis de atendimento ao cliente."
 capa: "/uploads/produtos/Totens_01.webp"
+capa_ajuste: "inteira"
 galeria:
   - imagem: "/uploads/produtos/Totens_01.webp"
   - imagem: "/uploads/produtos/Totens_02.webp"

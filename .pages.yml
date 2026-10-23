@@ -49,8 +49,20 @@ content:
         required: true
       - name: capa
         label: Foto do topo da página
-        description: Aparece inteira ao lado do título, no formato original (sem corte).
+        description: Aparece ao fundo, à direita do título. Fotos deitadas (paisagem) funcionam melhor.
         type: image
+      - name: capa_posicao
+        label: Enquadramento da foto do topo (opcional)
+        description: "Qual parte da foto aparece. Ex.: center (meio), top (parte de cima), bottom (parte de baixo), 50% 30% (horizontal e vertical)."
+        type: string
+      - name: capa_ajuste
+        label: Ajuste da foto do topo
+        description: "Preencher = a foto cobre a faixa (bom para fotos de ambiente). Inteira = produto completo sobre fundo branco (bom para fotos de estúdio)."
+        type: select
+        options:
+          values:
+            - { value: preencher, label: Preencher }
+            - { value: inteira, label: Inteira (fundo branco) }
       - name: video
         label: Vídeo próprio (MP4 leve, até ~5 MB)
         description: Aparece no topo do texto, em loop e sem som.

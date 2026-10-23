@@ -4,6 +4,7 @@ tipo: "produto"
 ordem: 3
 descricao: "Organizadores de cabos, bandejas e painéis cegos para racks 19″. Desenvolvemos projetos especiais."
 capa: "/uploads/produtos/AcessoriosRack_01.webp"
+capa_ajuste: "inteira"
 galeria:
   - imagem: "/uploads/produtos/AcessoriosRack_01.webp"
   - imagem: "/uploads/produtos/AcessoriosRack_02.webp"

@@ -4,6 +4,7 @@ tipo: "produto"
 ordem: 1
 descricao: "Gabinete 2U para rack 19″ em aço SAE 1020 com pintura eletrostática, para servidores personalizados."
 capa: "/uploads/produtos/Gabinete2U_01.webp"
+capa_ajuste: "inteira"
 galeria:
   - imagem: "/uploads/produtos/Gabinete2U_01.webp"
   - imagem: "/uploads/produtos/Gabinete2U_02.webp"

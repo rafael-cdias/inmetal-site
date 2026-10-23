@@ -5,6 +5,7 @@ tipo: "produto"
 ordem: 5
 descricao: "Garras clamp, espelhos 4×4 e 4×2 e espelhos para rack 19″ para conectores XLR, P10, RJ45 e HDMI."
 capa: "/uploads/produtos/AcessoriosAudio_01.webp"
+capa_ajuste: "inteira"
 galeria:
   - imagem: "/uploads/produtos/AcessoriosAudio_01.webp"
   - imagem: "/uploads/produtos/AcessoriosAudio_02.webp"

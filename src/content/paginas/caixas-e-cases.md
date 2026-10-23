@@ -4,6 +4,7 @@ tipo: "produto"
 ordem: 0
 descricao: "Caixas metálicas, chassis e cases sob medida em aço carbono, inox, galvanizado e alumínio para fontes, transformadores, inversores, amplificadores e outros equipamentos."
 capa: "/uploads/produtos/CaixasMetal_02.webp"
+capa_ajuste: "inteira"
 galeria:
   - imagem: "/uploads/produtos/CaixasMetal_02.webp"
   - imagem: "/uploads/produtos/CaixasMetal_03.webp"
