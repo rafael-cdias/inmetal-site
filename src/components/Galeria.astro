@@ -1,6 +1,6 @@
 ---
 interface Props { itens: { imagem: string; legenda?: string }[]; alt: string; colunas?: number }
-const { itens, alt, colunas = 3 } = Astro.props;
+const { itens, alt, colunas = 5 } = Astro.props;
 ---
 {itens.length > 0 && (
   <div class="galeria" style={`--colunas:${colunas}`}>
