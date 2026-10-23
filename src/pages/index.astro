@@ -5,34 +5,114 @@ import Icone from '../components/Icone.astro';
 import { home, paragrafos, whatsappLink } from '../lib/dados';
 ---
 <Base>
-  <section class="hero" aria-label="Destaques">
-    <div class="hero__grade">
+  <section class="carrossel" aria-roledescription="carrossel" aria-label="Destaques">
+    <div class="carrossel__trilho" tabindex="0">
       {home.destaques.map((d, i) => (
-        <article class="destaque">
-          <a href={d.link} class="destaque__midia" aria-label={d.titulo}>
-            {d.video
-              ? <video src={d.video} poster={d.poster} autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
-              : d.poster && <img src={d.poster} alt="" />}
-            <span class="destaque__numero">{String(i + 1).padStart(2, '0')}</span>
-            <span class="destaque__texto">
-              <span class="destaque__titulo">{d.titulo}</span>
-              <span class="destaque__saiba">Saiba mais <Icone nome="seta-direita" /></span>
-            </span>
-          </a>
-          {d.imagens.length > 0 && (
-            <div class="destaque__fotos galeria">
-              {d.imagens.map((im) => (
-                <a href={im.imagem} data-lightbox-src={im.imagem} data-legenda={`${im.rotulo} · ${im.categoria}`} class="destaque__foto">
-                  <img src={im.imagem} alt={`${d.titulo}: ${im.rotulo}`} loading="lazy" />
-                  <span><strong>{im.rotulo}</strong><small>{im.categoria}</small></span>
-                </a>
-              ))}
+        <article class="slide" aria-roledescription="slide" aria-label={`${i + 1} de ${home.destaques.length}: ${d.titulo}`} data-indice={i}>
+          {d.video
+            ? <video class="slide__fundo" src={d.video} poster={d.poster} muted loop playsinline preload={i === 0 ? 'auto' : 'none'} aria-hidden="true" {...(i === 0 ? { autoplay: true } : {})}></video>
+            : d.poster && <img class="slide__fundo" src={d.poster} alt="" />}
+          <div class="container slide__conteudo">
+            <div class="slide__texto">
+              <span class="slide__numero">{String(i + 1).padStart(2, '0')} <small>/ {String(home.destaques.length).padStart(2, '0')}</small></span>
+              <h2 class="slide__titulo">{d.titulo}</h2>
+              <a class="botao botao--primario" href={d.link}>Saiba mais <Icone nome="seta-direita" /></a>
             </div>
-          )}
+            {d.imagens.length > 0 && (
+              <div class="slide__fotos galeria">
+                {d.imagens.map((im) => (
+                  <a href={im.imagem} data-lightbox-src={im.imagem} data-legenda={`${im.rotulo} · ${im.categoria}`} class="slide__foto">
+                    <img src={im.imagem} alt={`${d.titulo}: ${im.rotulo}`} loading="lazy" />
+                    <span><strong>{im.rotulo}</strong><small>{im.categoria}</small></span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         </article>
       ))}
     </div>
+
+    {home.destaques.length > 1 && (
+      <div class="carrossel__controles">
+        <button class="carrossel__seta" data-dir="-1" aria-label="Destaque anterior">‹</button>
+        <div class="carrossel__pontos" role="tablist" aria-label="Escolher destaque">
+          {home.destaques.map((d, i) => (
+            <button class="carrossel__ponto" role="tab" aria-label={d.titulo} aria-selected={i === 0 ? 'true' : 'false'} data-ir={i}><span></span></button>
+          ))}
+        </div>
+        <button class="carrossel__seta" data-dir="1" aria-label="Próximo destaque">›</button>
+      </div>
+    )}
   </section>
+
+  <script>
+    const raiz = document.querySelector<HTMLElement>('.carrossel');
+    const trilho = raiz?.querySelector<HTMLElement>('.carrossel__trilho');
+    if (raiz && trilho) {
+      const slides = Array.from(trilho.querySelectorAll<HTMLElement>('.slide'));
+      const pontos = Array.from(raiz.querySelectorAll<HTMLButtonElement>('.carrossel__ponto'));
+      const semMovimento = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const INTERVALO = 8000;
+      let atual = 0;
+      let timer: number | undefined;
+      let pausadoPeloUsuario = false;
+
+      const tocar = (i: number) => {
+        slides.forEach((s, k) => {
+          const v = s.querySelector('video');
+          if (!v) return;
+          if (k === i) { v.preload = 'auto'; v.play().catch(() => {}); } else { v.pause(); }
+        });
+        pontos.forEach((p, k) => p.setAttribute('aria-selected', String(k === i)));
+        raiz.style.setProperty('--progresso-duracao', `${INTERVALO}ms`);
+        raiz.classList.remove('carrossel--anima'); void raiz.offsetWidth;
+        if (!pausadoPeloUsuario && !semMovimento) raiz.classList.add('carrossel--anima');
+      };
+      const ir = (i: number, suave = true) => {
+        atual = (i + slides.length) % slides.length;
+        trilho.scrollTo({ left: slides[atual].offsetLeft, behavior: suave && !semMovimento ? 'smooth' : 'auto' });
+      };
+      const agendar = () => {
+        clearInterval(timer);
+        if (pausadoPeloUsuario || semMovimento || slides.length < 2) return;
+        timer = window.setInterval(() => ir(atual + 1), INTERVALO);
+      };
+      const pararAuto = () => { pausadoPeloUsuario = true; clearInterval(timer); raiz.classList.remove('carrossel--anima'); };
+
+      // Detecta o slide visível pela posição da rolagem (setas, pontos, dedo ou trackpad)
+      let visivel = -1;
+      const atualizar = () => {
+        const i = Math.round(trilho.scrollLeft / trilho.clientWidth);
+        if (i === visivel || i < 0 || i >= slides.length) return;
+        visivel = i; atual = i; tocar(i); agendar();
+      };
+      let espera: number | undefined;
+      trilho.addEventListener('scroll', () => { clearTimeout(espera); espera = window.setTimeout(atualizar, 120); }, { passive: true });
+      atualizar();
+
+      raiz.querySelectorAll<HTMLButtonElement>('.carrossel__seta').forEach((b) =>
+        b.addEventListener('click', () => { pararAuto(); ir(atual + Number(b.dataset.dir)); }));
+      pontos.forEach((p) => p.addEventListener('click', () => { pararAuto(); ir(Number(p.dataset.ir)); }));
+      trilho.addEventListener('pointerdown', pararAuto, { passive: true });
+      trilho.addEventListener('wheel', (e) => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) pararAuto(); }, { passive: true });
+      trilho.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); pararAuto(); ir(atual + 1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); pararAuto(); ir(atual - 1); }
+      });
+      // Pausa quando a aba fica oculta ou o carrossel sai da tela
+      document.addEventListener('visibilitychange', () => {
+        const v = slides[atual].querySelector('video');
+        if (document.hidden) { clearInterval(timer); v?.pause(); } else { v?.play().catch(() => {}); agendar(); }
+      });
+      new IntersectionObserver(([e]) => {
+        const v = slides[atual].querySelector('video');
+        if (e.isIntersecting) { v?.play().catch(() => {}); agendar(); } else { v?.pause(); clearInterval(timer); }
+      }).observe(raiz);
+      // Ao redimensionar, mantém o slide atual alinhado
+      addEventListener('resize', () => ir(atual, false));
+    }
+  </script>
 
   <section class="intro container">
     <p class="sobretitulo">inMetal · Produtos em Aço</p>
