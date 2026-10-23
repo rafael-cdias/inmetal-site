@@ -1,0 +1,13 @@
+---
+interface Props { itens: { imagem: string; legenda?: string }[]; alt: string; colunas?: number }
+const { itens, alt, colunas = 3 } = Astro.props;
+---
+{itens.length > 0 && (
+  <div class="galeria" style={`--colunas:${colunas}`}>
+    {itens.map((f, i) => (
+      <a href={f.imagem} class="galeria__item" data-lightbox-src={f.imagem} data-legenda={f.legenda ?? ''}>
+        <img src={f.imagem} alt={f.legenda || `${alt} – foto ${i + 1}`} loading="lazy" decoding="async" />
+      </a>
+    ))}
+  </div>
+)}

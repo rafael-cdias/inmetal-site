@@ -1,0 +1,16 @@
+---
+import Icone from './Icone.astro';
+interface Props { titulo: string; imagem: string; link: string; texto: string }
+const { titulo, imagem, link, texto } = Astro.props;
+const curto = texto.length > 210 ? texto.slice(0, texto.lastIndexOf(' ', 200)) + '…' : texto;
+---
+<article class="cartao">
+  <a href={link} class="cartao__imagem" tabindex="-1" aria-hidden="true">
+    <img src={imagem} alt="" loading="lazy" decoding="async" />
+  </a>
+  <div class="cartao__corpo">
+    <h3><a href={link}>{titulo}</a></h3>
+    <p>{curto}</p>
+    <a class="cartao__link" href={link}>{link === '/contato/' ? 'Solicitar orçamento' : 'Saiba mais'} <Icone nome="seta-direita" /></a>
+  </div>
+</article>

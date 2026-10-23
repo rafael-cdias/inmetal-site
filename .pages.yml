@@ -1,0 +1,164 @@
+# Configuração do painel Pages CMS (https://app.pagescms.org)
+# ATENÇÃO (playbook 3.5): todo campo adicionado aqui precisa ser adicionado também
+# em src/content.config.ts (páginas) ou src/lib/dados.ts (site/home), NO MESMO COMMIT.
+# Os schemas são "strict": um campo esquecido faz o build falhar, em vez de sumir em silêncio.
+
+media:
+  input: public/uploads
+  output: /uploads
+
+content:
+  - name: paginas
+    label: Produtos e Serviços
+    type: collection
+    path: src/content/paginas
+    format: yaml-frontmatter
+    view:
+      fields: [titulo, tipo, ordem]
+      primary: titulo
+      sort: [tipo, ordem]
+      default:
+        sort: ordem
+        order: asc
+    fields:
+      - name: titulo
+        label: Título da página
+        type: string
+        required: true
+      - name: menu
+        label: Nome no menu (opcional)
+        description: Se ficar vazio, o menu usa o título.
+        type: string
+      - name: tipo
+        label: Onde aparece no menu
+        type: select
+        required: true
+        options:
+          values:
+            - { value: produto, label: Produtos }
+            - { value: servico, label: Serviços }
+            - { value: institucional, label: Institucional (fora dos menus) }
+      - name: ordem
+        label: Ordem no menu
+        type: number
+        default: 99
+      - name: descricao
+        label: Descrição para o Google
+        description: Uma ou duas frases. Aparece nos resultados de busca.
+        type: text
+        required: true
+      - name: capa
+        label: Imagem de fundo do topo da página
+        type: image
+      - name: video_youtube
+        label: Vídeo do YouTube (link)
+        description: Opcional. Cole o link do vídeo, ex. https://www.youtube.com/watch?v=...
+        type: string
+      - name: catalogo
+        label: Catálogo para download (opcional)
+        type: object
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+          - { name: arquivo, label: Arquivo PDF, type: file }
+          - { name: botao, label: Texto do botão, type: string, default: Baixe aqui }
+      - name: paleta
+        label: Paleta de cores (opcional)
+        type: object
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+          - { name: imagem, label: Imagem da paleta, type: image }
+      - name: galeria_titulo
+        label: Título da galeria (opcional)
+        type: string
+      - name: galeria
+        label: Galeria de fotos
+        description: Arraste para mudar a ordem. Clicando na foto, o site abre em tela cheia com setas.
+        type: object
+        list: true
+        fields:
+          - { name: imagem, label: Foto, type: image }
+          - { name: legenda, label: Legenda (opcional), type: string }
+      - name: body
+        label: Texto da página
+        type: rich-text
+        options:
+          format: markdown
+
+  - name: home
+    label: Página inicial
+    type: file
+    path: src/data/home.json
+    format: json
+    fields:
+      - name: destaques
+        label: Destaques do topo (vídeos)
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: video, label: Vídeo de fundo (MP4 leve, até ~5 MB), type: file }
+          - { name: poster, label: Imagem enquanto o vídeo carrega, type: image }
+          - { name: link, label: Link do "Saiba mais", type: string }
+          - name: imagens
+            label: Fotos pequenas
+            type: object
+            list: true
+            fields:
+              - { name: imagem, label: Foto, type: image }
+              - { name: rotulo, label: Rótulo, type: string }
+              - { name: categoria, label: Categoria, type: string }
+      - { name: intro_titulo, label: Título de apresentação, type: string }
+      - { name: intro_texto, label: Texto de apresentação, type: text }
+      - { name: servicos_titulo, label: Título da seção Serviços, type: string }
+      - name: servicos
+        label: Cartões de serviços
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: imagem, label: Foto, type: image }
+          - { name: link, label: Link, type: string }
+          - { name: texto, label: Texto, type: text }
+      - { name: produtos_titulo, label: Título da seção Produtos, type: string }
+      - name: produtos
+        label: Cartões de produtos
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: imagem, label: Foto, type: image }
+          - { name: link, label: Link, type: string }
+          - { name: texto, label: Texto, type: text }
+
+  - name: site
+    label: Contato e dados gerais
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - { name: nome, label: Nome, type: string }
+      - { name: slogan, label: Slogan, type: string }
+      - { name: descricao, label: Descrição para o Google (página inicial), type: text }
+      - { name: logo, label: Logotipo, type: image }
+      - { name: empresa_rodape, label: Razão social (rodapé), type: string }
+      - { name: telefone, label: Telefone, type: string }
+      - name: whatsapp
+        label: WhatsApp (só números, com 55 e DDD)
+        description: "Ex.: 5561981193632"
+        type: string
+      - { name: whatsapp_exibicao, label: WhatsApp como aparece no site, type: string }
+      - { name: whatsapp_mensagem, label: Mensagem inicial do WhatsApp, type: string }
+      - { name: email, label: E-mail, type: string }
+      - { name: endereco, label: Endereço, type: string }
+      - { name: cidade, label: Cidade / CEP, type: string }
+      - { name: horario, label: Horário de atendimento, type: text }
+      - { name: contato_texto, label: Texto da página Contato, type: text }
+      - { name: instagram, label: Instagram (link), type: string }
+      - { name: facebook, label: Facebook (link), type: string }
+      - { name: youtube, label: YouTube (link), type: string }
+      - name: mapa_embed
+        label: Link do mapa (Google Maps)
+        description: "No Google Maps: ache o local, arraste o pino para o lugar certo, clique em Compartilhar → Incorporar um mapa → Copiar HTML. Cole aqui só o endereço que está dentro de src=\"...\"."
+        type: string

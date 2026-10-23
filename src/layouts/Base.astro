@@ -1,0 +1,220 @@
+---
+import { getCollection } from 'astro:content';
+import { site, whatsappLink, telLink } from '../lib/dados';
+import Icone from '../components/Icone.astro';
+import '../styles/global.css';
+
+interface Props { titulo?: string; descricao?: string; imagem?: string }
+const { titulo, descricao = site.descricao, imagem = site.logo } = Astro.props;
+const tituloCompleto = titulo ? `${titulo} – ${site.nome}` : `${site.nome} – ${site.slogan}!`;
+
+const paginas = await getCollection('paginas');
+const porOrdem = (a: any, b: any) => a.data.ordem - b.data.ordem;
+const produtos = paginas.filter((p) => p.data.tipo === 'produto').sort(porOrdem);
+const servicos = paginas.filter((p) => p.data.tipo === 'servico').sort(porOrdem);
+const rotulo = (p: any) => p.data.menu ?? p.data.titulo;
+const atual = Astro.url.pathname;
+const ativo = (href: string) => atual === href;
+const grupoAtivo = (lista: any[]) => lista.some((p) => atual === `/${p.id}/`);
+const urlCanonica = new URL(atual, Astro.site);
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{tituloCompleto}</title>
+  <meta name="description" content={descricao} />
+  <link rel="canonical" href={urlCanonica} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content={tituloCompleto} />
+  <meta property="og:description" content={descricao} />
+  <meta property="og:image" content={new URL(imagem, Astro.site)} />
+  <link rel="icon" href="/uploads/marca/cropped-Avatar-270x270.jpg" />
+  <link rel="apple-touch-icon" href="/uploads/marca/cropped-Avatar-270x270.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="pular" href="#conteudo">Ir para o conteúdo</a>
+
+  <div class="topo">
+    <div class="container topo__linha">
+      <div class="topo__contatos">
+        <a href={telLink}><Icone nome="telefone" /> {site.telefone}</a>
+        <a href={whatsappLink()} target="_blank" rel="noopener"><Icone nome="whatsapp" /> {site.whatsapp_exibicao}</a>
+        <a class="esconde-mobile" href={`mailto:${site.email}`}><Icone nome="email" /> {site.email}</a>
+      </div>
+      <div class="topo__redes">
+        {site.instagram && <a href={site.instagram} target="_blank" rel="noopener" aria-label="Instagram"><Icone nome="instagram" /></a>}
+        {site.facebook && <a href={site.facebook} target="_blank" rel="noopener" aria-label="Facebook"><Icone nome="facebook" /></a>}
+        {site.youtube && <a href={site.youtube} target="_blank" rel="noopener" aria-label="YouTube"><Icone nome="youtube" /></a>}
+      </div>
+    </div>
+  </div>
+
+  <header class="cabecalho">
+    <div class="container cabecalho__linha">
+      <a href="/" class="marca" aria-label={`${site.nome} – página inicial`}>
+        <img src={site.logo} alt={`${site.nome} – ${site.slogan}`} width="176" height="80" />
+      </a>
+
+      <button class="menu-botao" aria-expanded="false" aria-controls="menu-principal">
+        <span></span><span></span><span></span><span class="sr">Menu</span>
+      </button>
+
+      <nav id="menu-principal" class="menu" aria-label="Principal">
+        <ul>
+          <li><a href="/empresa/" class:list={{ ativo: ativo('/empresa/') }}>Empresa</a></li>
+          <li class="tem-sub">
+            <button class:list={['menu__grupo', { ativo: grupoAtivo(produtos) }]} aria-expanded="false">Produtos <Icone nome="seta-baixo" /></button>
+            <ul class="sub">
+              {produtos.map((p) => <li><a href={`/${p.id}/`} class:list={{ ativo: ativo(`/${p.id}/`) }}>{rotulo(p)}</a></li>)}
+            </ul>
+          </li>
+          <li class="tem-sub">
+            <button class:list={['menu__grupo', { ativo: grupoAtivo(servicos) }]} aria-expanded="false">Serviços <Icone nome="seta-baixo" /></button>
+            <ul class="sub">
+              {servicos.map((p) => <li><a href={`/${p.id}/`} class:list={{ ativo: ativo(`/${p.id}/`) }}>{rotulo(p)}</a></li>)}
+            </ul>
+          </li>
+          <li><a href="/contato/" class:list={{ ativo: ativo('/contato/') }}>Contato</a></li>
+          <li class="menu__cta"><a class="botao botao--primario" href={whatsappLink()} target="_blank" rel="noopener">Pedir orçamento</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <slot />
+  </main>
+
+  <section class="faixa-cta">
+    <div class="container faixa-cta__linha">
+      <div>
+        <p class="sobretitulo sobretitulo--claro">Orçamento sem compromisso</p>
+        <h2>Tem um projeto em aço? Fale com a gente.</h2>
+      </div>
+      <div class="faixa-cta__botoes">
+        <a class="botao botao--whats" href={whatsappLink()} target="_blank" rel="noopener"><Icone nome="whatsapp" /> WhatsApp</a>
+        <a class="botao botao--contorno-claro" href={telLink}><Icone nome="telefone" /> {site.telefone}</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <div class="container rodape__grade">
+      <div>
+        <img class="rodape__logo" src={site.logo} alt={site.nome} width="160" height="73" loading="lazy" />
+        <p>A unidade de metalurgia da Indeletra. Soluções metálicas sob medida para indústria, comércio e arquitetura.</p>
+        <div class="rodape__redes">
+          {site.instagram && <a href={site.instagram} target="_blank" rel="noopener" aria-label="Instagram"><Icone nome="instagram" /></a>}
+          {site.facebook && <a href={site.facebook} target="_blank" rel="noopener" aria-label="Facebook"><Icone nome="facebook" /></a>}
+          {site.youtube && <a href={site.youtube} target="_blank" rel="noopener" aria-label="YouTube"><Icone nome="youtube" /></a>}
+        </div>
+      </div>
+      <div>
+        <h3>Produtos</h3>
+        <ul>{produtos.map((p) => <li><a href={`/${p.id}/`}>{rotulo(p)}</a></li>)}</ul>
+      </div>
+      <div>
+        <h3>Serviços</h3>
+        <ul>{servicos.map((p) => <li><a href={`/${p.id}/`}>{rotulo(p)}</a></li>)}</ul>
+      </div>
+      <div>
+        <h3>Contato</h3>
+        <ul class="rodape__contato">
+          <li><Icone nome="local" /><span>{site.endereco}<br />{site.cidade}</span></li>
+          <li><Icone nome="telefone" /><a href={telLink}>{site.telefone}</a></li>
+          <li><Icone nome="whatsapp" /><a href={whatsappLink()} target="_blank" rel="noopener">{site.whatsapp_exibicao}</a></li>
+          <li><Icone nome="email" /><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container rodape__base">
+      <span>© {new Date().getFullYear()} Todos os direitos reservados. {site.empresa_rodape}</span>
+    </div>
+  </footer>
+
+  <a class="whats-flutuante" href={whatsappLink()} target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><Icone nome="whatsapp" /></a>
+
+  <div class="lightbox" hidden aria-modal="true" role="dialog" aria-label="Foto ampliada">
+    <button class="lightbox__fechar" aria-label="Fechar">×</button>
+    <button class="lightbox__seta lightbox__seta--ant" aria-label="Foto anterior">‹</button>
+    <figure><img alt="" /><figcaption></figcaption></figure>
+    <button class="lightbox__seta lightbox__seta--prox" aria-label="Próxima foto">›</button>
+    <span class="lightbox__contador"></span>
+  </div>
+
+  <script>
+    // Menu mobile + submenus
+    const botao = document.querySelector<HTMLButtonElement>('.menu-botao');
+    const menu = document.querySelector<HTMLElement>('.menu');
+    botao?.addEventListener('click', () => {
+      const aberto = botao.getAttribute('aria-expanded') === 'true';
+      botao.setAttribute('aria-expanded', String(!aberto));
+      const fundo = document.querySelector('.cabecalho')?.getBoundingClientRect().bottom ?? 124;
+      menu?.style.setProperty('top', `${Math.max(0, fundo)}px`);
+      menu?.classList.toggle('aberto', !aberto);
+      document.body.classList.toggle('menu-aberto', !aberto);
+    });
+    document.querySelectorAll<HTMLButtonElement>('.menu__grupo').forEach((b) => {
+      b.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const aberto = b.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.menu__grupo').forEach((o) => o.setAttribute('aria-expanded', 'false'));
+        b.setAttribute('aria-expanded', String(!aberto));
+      });
+    });
+    document.addEventListener('click', () =>
+      document.querySelectorAll('.menu__grupo').forEach((o) => o.setAttribute('aria-expanded', 'false')));
+
+    // Lightbox: navega só dentro da mesma .galeria
+    const lb = document.querySelector<HTMLElement>('.lightbox')!;
+    const lbImg = lb.querySelector('img')!;
+    const lbCap = lb.querySelector('figcaption')!;
+    const lbCont = lb.querySelector<HTMLElement>('.lightbox__contador')!;
+    let grupo: HTMLElement[] = [];
+    let idx = 0;
+    const mostrar = (i: number) => {
+      idx = (i + grupo.length) % grupo.length;
+      const el = grupo[idx];
+      lbImg.src = el.dataset.lightboxSrc!;
+      lbImg.alt = el.querySelector('img')?.alt ?? '';
+      lbCap.textContent = el.dataset.legenda ?? '';
+      lbCont.textContent = `${idx + 1} / ${grupo.length}`;
+      lb.classList.toggle('lightbox--unica', grupo.length < 2);
+    };
+    const fechar = () => { lb.hidden = true; document.body.classList.remove('sem-rolagem'); };
+    document.querySelectorAll<HTMLElement>('[data-lightbox-src]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const g = el.closest('.galeria');
+        grupo = g ? Array.from(g.querySelectorAll<HTMLElement>('[data-lightbox-src]')) : [el];
+        mostrar(grupo.indexOf(el));
+        lb.hidden = false;
+        document.body.classList.add('sem-rolagem');
+        lb.querySelector<HTMLButtonElement>('.lightbox__fechar')?.focus();
+      });
+    });
+    lb.querySelector('.lightbox__fechar')!.addEventListener('click', fechar);
+    lb.querySelector('.lightbox__seta--ant')!.addEventListener('click', () => mostrar(idx - 1));
+    lb.querySelector('.lightbox__seta--prox')!.addEventListener('click', () => mostrar(idx + 1));
+    lb.addEventListener('click', (e) => { if (e.target === lb) fechar(); });
+    document.addEventListener('keydown', (e) => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') fechar();
+      if (e.key === 'ArrowLeft') mostrar(idx - 1);
+      if (e.key === 'ArrowRight') mostrar(idx + 1);
+    });
+    let x0 = 0;
+    lb.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) mostrar(idx + (dx < 0 ? 1 : -1));
+    });
+  </script>
+</body>
+</html>

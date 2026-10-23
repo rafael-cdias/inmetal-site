@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import Cartao from '../components/Cartao.astro';
+import Icone from '../components/Icone.astro';
+import { home, paragrafos, whatsappLink } from '../lib/dados';
+---
+<Base>
+  <section class="hero" aria-label="Destaques">
+    <div class="hero__grade">
+      {home.destaques.map((d, i) => (
+        <article class="destaque">
+          <a href={d.link} class="destaque__midia" aria-label={d.titulo}>
+            {d.video
+              ? <video src={d.video} poster={d.poster} autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+              : d.poster && <img src={d.poster} alt="" />}
+            <span class="destaque__numero">{String(i + 1).padStart(2, '0')}</span>
+            <span class="destaque__texto">
+              <span class="destaque__titulo">{d.titulo}</span>
+              <span class="destaque__saiba">Saiba mais <Icone nome="seta-direita" /></span>
+            </span>
+          </a>
+          {d.imagens.length > 0 && (
+            <div class="destaque__fotos galeria">
+              {d.imagens.map((im) => (
+                <a href={im.imagem} data-lightbox-src={im.imagem} data-legenda={`${im.rotulo} · ${im.categoria}`} class="destaque__foto">
+                  <img src={im.imagem} alt={`${d.titulo}: ${im.rotulo}`} loading="lazy" />
+                  <span><strong>{im.rotulo}</strong><small>{im.categoria}</small></span>
+                </a>
+              ))}
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="intro container">
+    <p class="sobretitulo">inMetal · Produtos em Aço</p>
+    <h1>{home.intro_titulo}</h1>
+    <div class="intro__texto">{paragrafos(home.intro_texto).map((p) => <p>{p}</p>)}</div>
+    <div class="intro__botoes">
+      <a class="botao botao--primario" href={whatsappLink()} target="_blank" rel="noopener"><Icone nome="whatsapp" /> Pedir orçamento</a>
+      <a class="botao botao--contorno" href="/empresa/">Conheça a empresa</a>
+    </div>
+  </section>
+
+  <section class="secao secao--cinza" id="servicos">
+    <div class="container">
+      <header class="secao__cabeca">
+        <p class="sobretitulo">O que fazemos</p>
+        <h2>{home.servicos_titulo}</h2>
+      </header>
+      <div class="grade grade--4">
+        {home.servicos.map((c) => <Cartao {...c} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="produtos">
+    <div class="container">
+      <header class="secao__cabeca">
+        <p class="sobretitulo">O que fabricamos</p>
+        <h2>{home.produtos_titulo}</h2>
+      </header>
+      <div class="grade grade--3">
+        {home.produtos.map((c) => <Cartao {...c} />)}
+      </div>
+    </div>
+  </section>
+</Base>

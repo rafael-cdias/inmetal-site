@@ -1,0 +1,86 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Galeria from '../components/Galeria.astro';
+import Icone from '../components/Icone.astro';
+import { paragrafos, whatsappLink, telLink, site } from '../lib/dados';
+
+export async function getStaticPaths() {
+  const paginas = await getCollection('paginas');
+  return paginas.map((p) => ({ params: { slug: p.id }, props: { pagina: p } }));
+}
+const { pagina } = Astro.props;
+const d = pagina.data;
+const { Content } = await render(pagina);
+const secao = { produto: 'Produtos', servico: 'Serviços', institucional: 'Empresa' }[d.tipo];
+const ytId = d.video_youtube?.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/)?.[1];
+const msg = `Olá! Vim pelo site da inMetal e gostaria de um orçamento de: ${d.menu ?? d.titulo}.`;
+---
+<Base titulo={d.menu ?? d.titulo} descricao={d.descricao} imagem={d.capa}>
+  <section class="pagina-topo" style={d.capa ? `--capa:url('${d.capa}')` : undefined}>
+    <div class="container">
+      <p class="sobretitulo sobretitulo--claro">{secao}</p>
+      <h1>{d.titulo}</h1>
+    </div>
+  </section>
+
+  <div class="container pagina-corpo" class:list={{ 'pagina-corpo--institucional': d.tipo === 'institucional' }}>
+    <article class="prosa">
+      {ytId && (
+        <div class="video-yt">
+          <iframe src={`https://www.youtube-nocookie.com/embed/${ytId}`} title={`Vídeo: ${d.titulo}`} loading="lazy"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      )}
+      <Content />
+    </article>
+
+    {d.tipo !== 'institucional' && (
+      <aside class="lateral">
+        <div class="lateral__caixa">
+          <h2>Solicite um orçamento</h2>
+          <p>Fale direto com a nossa equipe e conte o que você precisa.</p>
+          <a class="botao botao--whats botao--bloco" href={whatsappLink(msg)} target="_blank" rel="noopener"><Icone nome="whatsapp" /> WhatsApp</a>
+          <a class="botao botao--contorno botao--bloco" href={telLink}><Icone nome="telefone" /> {site.telefone}</a>
+          <a class="lateral__email" href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      </aside>
+    )}
+  </div>
+
+  {d.paleta && (
+    <section class="container bloco-extra">
+      <div class="paleta">
+        <div>
+          <h2>{d.paleta.titulo}</h2>
+          {paragrafos(d.paleta.texto).map((p) => <p>{p}</p>)}
+        </div>
+        <div class="galeria galeria--unica">
+          <a href={d.paleta.imagem} data-lightbox-src={d.paleta.imagem} data-legenda={d.paleta.titulo}>
+            <img src={d.paleta.imagem} alt={d.paleta.titulo} loading="lazy" />
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {d.catalogo && (
+    <section class="container bloco-extra">
+      <div class="catalogo">
+        <Icone nome="pdf" />
+        <div>
+          <h2>{d.catalogo.titulo}</h2>
+          {paragrafos(d.catalogo.texto).map((p) => <p>{p}</p>)}
+        </div>
+        <a class="botao botao--primario" href={d.catalogo.arquivo} target="_blank" rel="noopener">{d.catalogo.botao}</a>
+      </div>
+    </section>
+  )}
+
+  {d.galeria.length > 0 && (
+    <section class="container bloco-extra">
+      {d.galeria_titulo && <h2 class="galeria-titulo">{d.galeria_titulo}</h2>}
+      <Galeria itens={d.galeria} alt={d.titulo} />
+    </section>
+  )}
+</Base>

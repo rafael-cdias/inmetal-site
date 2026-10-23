@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import { site, whatsappLink, telLink } from '../lib/dados';
+---
+<Base titulo="Contato" descricao={`Fale com a inMetal: ${site.telefone}, WhatsApp ${site.whatsapp_exibicao}, ${site.email}. ${site.endereco}, ${site.cidade}.`}>
+  <section class="pagina-topo">
+    <div class="container">
+      <p class="sobretitulo sobretitulo--claro">Fale com a gente</p>
+      <h1>Contato</h1>
+    </div>
+  </section>
+
+  <div class="container contato">
+    <div class="contato__info">
+      <p class="contato__intro">{site.contato_texto}</p>
+      <ul class="contato__lista">
+        <li><Icone nome="relogio" /><div><strong>Horário de atendimento</strong><span>{site.horario}</span></div></li>
+        <li><Icone nome="local" /><div><strong>Endereço</strong><span>{site.endereco}<br />{site.cidade}</span></div></li>
+        <li><Icone nome="telefone" /><div><strong>Telefone</strong><a href={telLink}>{site.telefone}</a></div></li>
+        <li><Icone nome="whatsapp" /><div><strong>WhatsApp</strong><a href={whatsappLink()} target="_blank" rel="noopener">{site.whatsapp_exibicao}</a></div></li>
+        <li><Icone nome="email" /><div><strong>E-mail</strong><a href={`mailto:${site.email}`}>{site.email}</a></div></li>
+      </ul>
+      <div class="contato__botoes">
+        <a class="botao botao--primario" href={telLink}><Icone nome="telefone" /> Ligue agora</a>
+        <a class="botao botao--whats" href={whatsappLink()} target="_blank" rel="noopener"><Icone nome="whatsapp" /> WhatsApp</a>
+      </div>
+    </div>
+    <div class="contato__mapa">
+      <iframe src={site.mapa_embed} title={`Mapa: ${site.endereco}, ${site.cidade}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</Base>
